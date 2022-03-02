@@ -120,6 +120,7 @@ namespace homework1
                 else
                 {
                     Console.WriteLine("다른것을 선택해주세요");
+                    Console.WriteLine("");
 
                 }
 
