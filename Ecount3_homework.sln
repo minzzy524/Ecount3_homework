@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "220302_Homework", "220302_H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "220302_homework(array)", "220302_homework(array)\220302_homework(array).csproj", "{50319ABD-8AE9-4DC8-9857-1A6DBDBA3807}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "220304_ArrayCinema", "220304_ArrayCinema\220304_ArrayCinema.csproj", "{CA475F00-7CDC-429F-B8C5-7510BFCFF09B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{50319ABD-8AE9-4DC8-9857-1A6DBDBA3807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50319ABD-8AE9-4DC8-9857-1A6DBDBA3807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50319ABD-8AE9-4DC8-9857-1A6DBDBA3807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA475F00-7CDC-429F-B8C5-7510BFCFF09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA475F00-7CDC-429F-B8C5-7510BFCFF09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA475F00-7CDC-429F-B8C5-7510BFCFF09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA475F00-7CDC-429F-B8C5-7510BFCFF09B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
