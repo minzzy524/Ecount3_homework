@@ -34,65 +34,88 @@ namespace _220304_ArrayCinema
             }
         }
         public int booking(string input)           // 좌석 예약하기
-        {           
-            for (int i = 0; i < seat.GetLength(0); i++)
+        {
+            int i = Convert.ToInt32(input.Substring(0,1));
+            int j = Convert.ToInt32(input.Substring(2, 1));
+            input = $"[{input}]";
+            if (input == seat[i,j])
             {
-                for (int j = 0; j < seat.GetLength(1); j++)
-                {
-                    if (input == seat[i,j])
-                    {
-                        seat[i, j] = "[예매]";
-                        Console.WriteLine("예약이 완료되었습니다.");
-                        Console.WriteLine($"예약한 좌석은 {input} 입니다");
-                        
-                        resultcode = 0;
-                    }
-                    else if(seat[i,j] == "[예매]")
-                    {
-                        Console.WriteLine("이미 예매완료된 좌석입니다. 메인으로 돌아갑니다.");
-                        resultcode = 0;
-                        break;
-                    }
-                }
+                seat[i, j] = "[예매]";
+                Console.WriteLine("예약이 완료되었습니다.");
+                Console.WriteLine($"예약한 좌석은 {input} 입니다");
+                
+                resultcode = 0;
+            }
+            else if(seat[i,j] == "[예매]")
+            {
+                Console.WriteLine("이미 예매완료된 좌석입니다. 메인으로 돌아갑니다.");
+                resultcode = 0;
             }
             return resultcode;
         }
         public int inquire(string input)           // 예약 조회하기
         {
-            seatStatus();
-            for (int i = 0; i < seat.GetLength(0); i++)
+            string bookingInput = input;
+            int i = Convert.ToInt32(input.Substring(0, 1));
+            int j = Convert.ToInt32(input.Substring(2, 1));
+            input = $"[{input}]";
+            if (seat[i, j] != "[예매]")
             {
-                for (int j = 0; j < seat.GetLength(1); j++)
+                Console.WriteLine("현재 좌석은 예약이 안되었습니다 예약하시겠습니까? 1. 예약하기 2. 뒤로가기");
+                int select = Convert.ToInt32(Console.ReadLine());
+                if (select == 1)
                 {
-                    if (input != seat[i, j])
-                    {
-                        Console.WriteLine("현재 좌석은 예약이 안되었습니다 예약하시겠습니까? 1. 예약하기 2. 뒤로가기");
-                        int select = Convert.ToInt32(Console.ReadLine());
-                        if (select == 1)
-                        {
-                            booking(input);
-                            resultcode = 0;
-                        }
-                        else if(select == 2)
-                        {
-                            resultcode = 0;
-                            return resultcode;
-                        }
-                        else
-                        {
-                            Console.WriteLine("잘못입력하셨습니다. 1과 2만 입력가능합니다.");
-                            resultcode = 1;
-                        }
-                                              
-                    }
-                    else
-                    {
-                        Console.WriteLine("예매완료된 좌석입니다. 메인으로 돌아갑니다.");
-                        resultcode = 0; ;
-                    }
+                    
+                    booking(bookingInput);
+                    resultcode = 0;
                 }
+                else if(select == 2)
+                {
+                    resultcode = 0;
+                    return resultcode;
+                }
+                else
+                {
+                    Console.WriteLine("잘못입력하셨습니다. 1과 2만 입력가능합니다.");
+                    resultcode = 1;
+                }
+                                              
+            }
+            else
+            {
+                Console.WriteLine("예매완료된 좌석입니다. 메인으로 돌아갑니다.");
+                resultcode = 0; ;
             }
             return resultcode;
+        }
+        public void Cancle()
+        {
+            string booking;
+            int select;
+            Console.WriteLine("예매번호를 입력해주세요");
+            booking = Console.ReadLine();
+
+            Console.WriteLine($"고객님이 예매하신 좌석은 {booking} 입니다. \n");
+
+            string booking_num_10 = booking.Substring(0, 1);
+            string booking_num_1 = booking.Substring(2, 1);
+            int low = Convert.ToInt32(booking_num_10);
+            int col = Convert.ToInt32(booking_num_1);
+            Console.WriteLine($"{low}, {col}");
+            if (seat[low, col] == "[예매]")
+            {
+                Console.WriteLine(@"예매를 취소하시겠습니까?
+ 네(1), 아니오(2) 중 하나를 입력해주세요.");
+                select = Convert.ToInt32(Console.ReadLine());
+                if (select == 1)
+                {
+                    seat[low, col] = $"[{low}-{col}]";
+                    Console.WriteLine("예약 취소가 완료되었습니다.");
+                }
+                if (select == 2)
+                    Console.WriteLine("예매 취소를 하지 않겠습니다.\n");
+            }
+            else Console.WriteLine("예매 번호를 확인해주세요");
         }
         public void mainmenu()
         {
@@ -142,8 +165,8 @@ namespace _220304_ArrayCinema
                             goto case 2;
                         }
                     case 3:
+                        Cancle();
                         break;
-
                     default:
                         auto = false;
                         break;
